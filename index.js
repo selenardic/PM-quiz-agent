@@ -2,6 +2,8 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { Client } = require('@notionhq/client');
 const TelegramBot = require('node-telegram-bot-api');
 const cron = require('node-cron');
+console.log('TELEGRAM token exists:', !!process.env.TELEGRAM_BOT_TOKEN);
+console.log('NOTION key exists:', !!process.env.NOTION_API_KEY);
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
