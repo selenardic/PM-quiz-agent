@@ -44,7 +44,8 @@ async function runQuizAgent() {
   await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, `🧠 Product Management Quiz\n\n${quiz.question}\n\nReply with your answer!`);
   console.log('Question sent — waiting for your reply...');
 
-  bot.once('message', async (msg) => {
+  bot.on('message', async (msg) => {
+    if (msg.text === quiz.question) return;
     const userAnswer = msg.text.trim().toUpperCase().charAt(0);
     const correctAnswer = quiz.answer.toUpperCase().match(/ANSWER:\s*([A-D])/)?.[1];
     if (userAnswer === correctAnswer) {
@@ -52,7 +53,6 @@ async function runQuizAgent() {
     } else {
       await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, `❌ Not quite right — but you're here to learn! 💪\n\n📖 Answer\n\n${quiz.answer}`);
     }
-    console.log('Answer sent!');
   });
 }
 
