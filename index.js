@@ -60,5 +60,5 @@ cron.schedule('30 9 * * 3', () => {
   runQuizAgent();
 });
 
-console.log('Agent started. Running test now...');
+console.log('Agent started. Waiting for Wednesday 9:30am...');;
 runQuizAgent();
